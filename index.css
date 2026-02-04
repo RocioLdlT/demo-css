@@ -1,0 +1,190 @@
+/*       SELECTORES      */
+
+/* Etiquetas HTML */
+
+/* El * afecta de forma universal  */
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+/* En el caso de * estamos siendo muy poco específicos porque luego si aplicamos algún tipo de especificidad lo modificará porque * no tiene especificidad */
+
+h1 {
+    color: blue;
+    text-align: center;
+    margin: 0;
+}
+
+/* p { 
+    font-size: 18px;
+    text-align: center;
+} Esto es demasiado poco específico ya que es para todos los párrafos*/
+
+/* Clases */
+/* Entre el no especificar los párrafos o especificarlos con IDs tenemos las Clases */
+/* Para decir que el selector es una clase, se empieza con un . 
+así recogerá en nuestro index el style que le estamos especificando */
+/* Las clases pueden ir seguidas en index "class highlight highlight1", estaríamos diciendo es mujer rubia, pero "class highlight highlight2" sería mujer morena*/
+/* Además las clases en html se le pueden añadir etiquetas sin . por ejemplo "p span" span no necesita el punto porque es una etiqueta */
+
+.highlight {
+    background-color: brown;
+    font-weight: bold;
+}
+
+/* background para el fondo del color.. */
+/* Los colores si pinchamos en el cuadrado de color 
+podemos ver las diferentes formas que puede reconocer y define ese color.
+La más usada es rgb, también está la exadecimal
+En JS se suele usar en exadecimal.
+El hsl suele gustar mas en diseñadores*/
+
+.sub-title {
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ID's */
+/* Solo un elemento puede ser ID */
+/* Para decir que el selector es una clase, se empieza con un # 
+así recogerá en nuestro index el style que le estamos especificando */
+/* Pero como los ID hay que usarlos cuando es algo principal, importante.. lo vamos a modificar a clase */
+
+/* #sub-title { 
+    font-size: 18px;
+    text-align: center;
+} */
+
+/* MÚLTIPLES SELECTORES */
+
+h1,
+.sub-title {
+    color: red;
+}
+
+/* Selectores de atributo */
+
+a [target] {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Selectores combinados */
+/* El espacio entre nav y ul significa que es descendiente de.. 
+y, en este caso, solo le estaríamos dando forma a los "ul" que desciendan de "nav" */
+
+/* nav ul { 
+        list-style: none;
+    }
+
+    nav li {
+        display: inline;
+        margin-right: 15px;
+    }*/
+
+/* Descendientes directos (hijo) */
+/* En este caso no se aplica porque ningún "li" puede ser descendiente DIRECTO de "nav" 
+porque siempre van con su antecesor "ul"*/
+
+nav > li {
+    background-color: aqua;
+}
+
+/* Sibbling (hermano) */
+/* En este caso solo afectará a los que tengan característica de hermano, 
+no de descendiente, como con la consanguinidad */
+/* Hay que tener en cuenta que afectaría solo a los hermanos a partir de la etiqueta indicada, no la anterior porque es "lineal" */
+
+header ~ section {
+    border: 2px solid black;
+}
+
+/* Adjacent sibbling (hermano adyacente) */
+/* En este caso todas las secciones que sean la siguiente al hermano  de lo  indicado, del header aquí*/
+/* Hay que tener en cuenta que justo afectará al siguiente de la etiqueta indicada, siendo más restrictivo que los sibbling*/
+
+header + section {
+    padding: 10px;
+    background-color: beige;
+}
+
+/* Pseudo-elemento */
+/* Buscar diferencias en internet */
+::first-letter {
+    font-size: 200%;
+    color: black;
+}
+
+/* Pseudo-clases */
+/* En las clases las indico yo, las pseudo-clases son clases que ya vienen de alguna manera predefinida, clase hijo, clase tipo;
+las clases son estáticas pero las pseudo clases son pseudo estáticas y dinámicas*/
+
+:hover {
+    background-color: blanchedalmond;
+}
+
+/* Podemos añadir una "p" a .sub-title o a ::first-letter 
+para indicarle que quiero que esa condición le afecte a todos los párrafos.
+También añadir "a" en :hover para que el ratón salga de determinada forma encima de un enlace*/
+
+/* Anidamiento manera moderna de escribir en CSS. En vez de selectores combinados */
+
+nav {
+    ul {
+        list-style: none;
+    }
+    li {
+        display: inline;
+        margin-right: 15px;
+    }
+}
+
+/* Dato: ":empty" son todos los elementos que están vacíos dentro, por ejemplo <div></div> */
+/* Dato: en los atributos existen modificadores *, ^ , $, que significan "que contiene", "que empieza" y "que termina" respectivamente */
+
+/*       CASCADA        */
+/* Ante una instrucción específica, predomina la especificación que la última orden. 
+Si las dos, tres o 200 ordenes son del mismos nivel sin especificidad entonces solo hace caso a la última */
+
+/*      ESPECIFICIDAD     */
+/* Pon el ratón encima del "nav" en el archivo de CSS y saldrá la especificidad (0,0,0) */
+/* Hay hasta 5 posiciones
+
+a !important: Es como darle mucha importancia para que no te lo modifique y quieres que sí o sí eso aparezca así
+    p[title]{
+        color: brown !important;
+    }
+
+b Estilo inline (lo estamos especificando en la propia linea, pero suelen ser un problema para aplicarle por encima otro estilo)
+1 IDs (#, id, )
+2 Atributos, clases y pseudo clases (:, .class.,)
+3 Elementos y pseudo elementos (:: , [] )
+*/
+
+/*      HERENCIA        */
+/* Hay propiedades que se heredan y otras que no.
+/* margin y padding no se heredan por ejemplo; pero font-family sí se hereda */
+/* Para saber qué propiedades se heredan o no, en MDN te vas a las properties y señalas la que tienes duda, y se ve en Inherited
+Suelen ser bastante lógicas con lo que se hereda y con lo que no pero si hay dudas se puede aclarar ahí*/
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+}
+
+/* Es interesante utilizar el object-fit para ajustar la imagen 
+dentro de los rangos de medición que le estamos proporcionando */
+section.fit {
+    div {
+        imag {
+            border: 2px solid;
+            width: 300px ;
+            height: 300px ;
+            /* object-fit: contain;  éste lo ajusta a lo mejor a lo que me has indicado*/
+            object-fit: cover;  /* éste también lo ajusta y suele dejarlo más bonito 
+            pero al final lo mejor es probar para ver cual queda mejor */
+        }
+    }
+}
