@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Arial, sans-serif; /* Hay 4 tipos de fuentes: comentario dentro de layout.css */
+}
+
+header,
+footer,
+main {
+    border: 1px solid #000; /* Borde temporal, que luego quitaré, es para probar lo que estamos realizando */
+}
+
+header {
+    min-height: 15vh; /* en vez de height: 20%; */
+    /* overflow: hidden; buscar significado */
+    /* overflow: auto; */
+    /* overflow: scroll; */
+    /* overflow: visible; */
+    text-align: center;
+    padding-block: 10px; /* 10px 0; padding arriba y abajo, padding izq. y derecha)*/
+    /* padding-botton y padding-top, padding-left y padding-right puedes definirlas también sin el atajo anterior*/
+    /* Propiedades lógicas (diferentes de Custom properties)
+                    padding-block es la dirección del bloque(arriba y abajo en nuestro idioma) 
+                    padding-inline es la dirección de lectura (izq. y derecha en nuestro idioma)
+                    Pero en chino y árabe, por ejemplo, estas direcciones pueden ser diferentes.
+                    Lo suyo es utilizar estas dos ultimas si estamos aplicándolo para un cliente internacional
+                    y que además viene genial para entender la forma en la que trabajar con flex, que utiliza los 4 ejes*/
+    /* También tenemos padding-block-start y/o padding-inline-end*/
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+main {
+    min-height: 70vh;
+    h2 {
+        padding-block: 1rem;
+        text-align: center;
+        margin-block: 0;
+    }
+
+    .column {
+        width: 49%;
+        display: block;
+        float: left;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+    p {
+        margin-block-start: 0;
+        padding-inline: 1rem;
+    }
+}
+
+footer {
+    min-height: 10vh;
+    text-align: center;
+    padding-inline-start: 1rem;
+}
+
+/* Ejemplo de colocar imagen en ejemplos Alejandro 5.CSS/web-05/ layout.css y layout.html */
