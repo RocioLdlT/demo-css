@@ -139,11 +139,67 @@ Normalmente por defecto viene el que esté "en línea".
 (a) Padding-block es la dirección del bloque(arriba y abajo en nuestro idioma).
 (b)Padding-inline es la dirección de lectura (izq. y derecha en nuestro idioma). Pero en chino y árabe, por ejemplo, estas direcciones pueden ser diferentes. Utilizar estas dos ultimas si estamos aplicándolo para un cliente internacional será lo más responsable, además nos ayudará a entender la forma en la que trabajar con flex o grid, que utilizan 4 ejes.
 
-#### FLEXBOX
+#### FLEX BOX
+
+Al aplicar `display: flex` directamente mis cajas se convierte en un contenedor flexible. Hay que tener en cuenta que los hijos no heredan ese "flex". Podemos aplicarlo en los hijos individualmente.
+
+Para la dirección horizontal de nuestra web tendremos en cuenta justify.content
+Para la dirección vertical de nuestra web tendremos en cuenta align.items
+
+Es importante entender que si usamos la dirección de row a column, nuestro eje principal se revierte. Es  decir, que al convertir con flex-direction mi eje row -->  a eje column ! , si después le aplicamos un justify-content: end (flex-end) align-items: center, esa "orden" se aplicará a nuestra nuevo eje principal "column", que habrá pasado de horizontal a vertical.
+
+```css
+.section.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    min-height: 60vh;
+    margin: 1rem;
+}
+```
+- La dirección por defecto siempre será `row` (de izq. a derecha).
+- Para justificar nuestra flex box por norma general se usa el space-between.
+- Por defecto, el alineamiento (vertical, de arriba a abajo) será `align-items; stretch`, pero tenemos las opciones de modificarlo, las tres más comunes son: start, center y end.
+
+ATAJO: `margin` para agrupar los 4 márgenes podemos simplificar con `margin= 1rem`
+pero si son diferentes sería `margin: 1rem 0rem 2rem 2rem---top, right, bottom, left`, respectivamente, (sigue la dirección de las agujas del reloj: arriba, derecha, abajo e izquierda).
+Relacionado con `margin` vemos `margin: 0 auto` que dirá que los margenes de arriba y abajo sean 0 pero que los márgenes laterales se adecúen al espacio sobrante que  tenemos.
+
+- Align-content se refiere a múltiples líneas y align-items se refiere a una sola línea (buscar mejor definición).
+
+- La propiedad gap es el margen que queremos darle entre elementos, no en nuestra página. Row-gap (espacio lateral) o column-gap (espacio vertical) son sus dos variantes.
+
+En el caso de los hijos del display: flex podemos aplicar esa flexibilidad individualmente.
+
+```css
+section {
+    flex-grow: 0; 
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+/* Un atajo para este ejemplo es "flex: 0 1 auto"; pero hay que saber el orden de los valores, que que si los variamos cambiará lo que queremos indicarle a flex */
+
+section:nth-of-type(2) {
+    flex-grow: 2
+}
+
+section:nth-of-type(3) {
+    flex-grow: 1
+}
+```
+
+- Align-self sirve para que un elemento concreto dentro de un grupo de elementos muevas verticalmente su posición.
+
+- Order; posiciona dentro de un elemento según le demos valor `order: 2`. Teniendo en cuenta que los demás elementos de la misma familia tendrán valor 0 (o les podremos haber dado otros valores para re-colocarlos), primero saldrán los 0 y después a quien le hayas dado valor 1 o 2. También saldrán por delante a quien les hayas dado valor -1 o -2, respectivamente.
+
+Como podemos ver al final, en el link, éstas dos últimas propiedades se aplicarán a los hijos y, no a los padres, en Flexbox.
 
 
+DATO: Desde el navegador, F12 y en la pestaña Layout, en display flex, podremos jugar con las diferentes opciones, es una muy buena opción para ver los diferentes ejemplos y cómo se comporta flex en nuestra página.
 
+LINK: [www.CSS-tricks.com](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) como guía práctica de CSS flex box.
 
+Ejemplo Porfolio en apuntes Alejandro 4.CSS/ web/ index.css e index.html.
 
 ## DATOS SUELTOS
 
@@ -154,6 +210,13 @@ Normalmente por defecto viene el que esté "en línea".
 2. `max.width` , para una imagen que quiero que sea fluida y flexible. Normalmente los textos fluyen en nuestra web pero las imágenes se comportan de diferente modo.
 
 3. En html no se ponen unidades en width o height por ejemplo, pero en css si le aclaramos las unidades (px, vh, vw, rem, em).
+
+4. Importante: `display: block` tiene dos características principales; 
+la primera es que cada elemento ocupa todo el ancho disponible (el 100% del contenedor) 
+y  la segunda , precisamente por éste primer motivo, siempre comienza en una nueva línea, posicionándose verticalmente uno debajo del otro.
+
+5. Fons Awesone para encontrar svg.
+
 
 
 
