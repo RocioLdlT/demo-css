@@ -33,7 +33,7 @@ Esta propiedad nos dice que el último indicado con el mismo valor de especifici
 ```css
 .p1 {}
 p.p1 {}
-body p.p1 {} 
+body p.p1 {}
 Vas añadiéndole elementos y le estás generando mayor especificidad
 .p1.p1 {}
 .p1 {!important}
@@ -51,13 +51,13 @@ En nuestro html añadimos los links en nuestro <head></head>
 
 Si es un proyecto pequeño, podemos meter nuestro reset, variables, si es que creamos, y la especificaciones a continuación con separaciones de comentarios si así lo creemos necesario para nuestra organización.
 
-
 Otra opción para redirigir nuestro css al html (por ejemplo) es:
-```css
-@import url(./style.css)
-```
-No suele usarse pero es práctico y más actual.
 
+```css
+@import url(./style.css);
+```
+
+No suele usarse pero es práctico y más actual.
 
 ### VARIABLES CSS (Custom properties)
 
@@ -85,14 +85,14 @@ Por defecto 1 rem (normalmente son 16px).
 DATO: Es mala práctica definir tamaños fijos en las fuentes.
 
 Los `em` directos del padre del contenedor y los `rem` van asociados a :root. Los `em` son más específicos para líneas, por ejemplo, una parte que está contenida dentro de un contenedor.
-*Ejemplo en apuntes CSS Unidades.css y unidades.html*
+_Ejemplo en apuntes CSS Unidades.css y unidades.html_
 
-- `vw` viewport (lo que nos enseña el navegador) * width ( para el ancho del navegador con contar la línea del navegador)
-- `vh` viewport * height (para el alto del navegador con la linea de scroll, la barra vaya jaja)
+- `vw` viewport (lo que nos enseña el navegador) \* width ( para el ancho del navegador con contar la línea del navegador)
+- `vh` viewport \* height (para el alto del navegador con la linea de scroll, la barra vaya jaja)
 
 Existen las misma pero sin contar la línea de scroll (revisar apuntes o buscar).
 
-*Para otros valores relativos del estilo a los anteriores, revisar apuntes*
+_Para otros valores relativos del estilo a los anteriores, revisar apuntes_
 
 ### BOX MODEL (MODELO DE CAJA)
 
@@ -101,18 +101,19 @@ El Box Model tienen un modelo de cajas dentro de cajas donde el margen está rod
 Lo primero que realizamos es quitar los valores por defecto dentro de nuestra caja con:
 
 ```css
-* { 
+* {
     box-sizing: border-box;
 }
 ```
+
 Esto nos servirá porque, por ejemplo en dos span juntos, con este tipo de modelo al añadirle al primer <span> width, borde, y margin, y luego indicarle al segundo span su padding, quizá ocupase demasiado el ancho de ambos en nuestra web por "culpa" de width ya que por defecto, contaba (desde los inicios de css)demasiado el contenido de dentro de la propia caja....
 
-Hay que tener en cuenta que box-sizing no se hereda por lo que tenemos que ponerle ese * para que afecte a cada elemento y no nos entorpezca la herencia y la cascada acabando por no aplicarse.
+Hay que tener en cuenta que box-sizing no se hereda por lo que tenemos que ponerle ese \* para que afecte a cada elemento y no nos entorpezca la herencia y la cascada acabando por no aplicarse.
 
 Con este `border-box`lo que estamos haciendo es que width incorpore el borde dentro de su contenido (no el margen) pero con éste detalle estamos solventando el dilema que se nos presenta con `content-box`.
 
+DATO: El \* no incluye ::after y ::before por lo que para incluir todo, todo y todo, pondríamos;
 
-DATO: El * no incluye ::after y ::before por lo que para incluir todo, todo y todo, pondríamos;
 ```css
 *,
 *::before,
@@ -124,7 +125,7 @@ DATO: El * no incluye ::after y ::before por lo que para incluir todo, todo y to
 - Los márgenes verticales (margin) entre elementos no se suman. En vez de sumar los dos los márgenes se colapsan y siempre cogerá el valor % más grande de los dos elementos en cuestión. Sin embargo, en los margenes horizontales sí se suman, no se colapsan.
 
 - Los display: más comunes son `block` (que suele venir por defecto y que ocupa el ancho de la página sin que la siguiente etiqueta intente colarse en ese espacio) e `inline` (siempre va ocupar su propio contenido y podrá añadirse otro elemento si el ancho de la página lo permite. Por ejemplo, dos títulos quedarían en la misma línea).
-Block sirve para que los títulos, por ejemplo, no se le añada visualmente el siguiente elemento.
+  Block sirve para que los títulos, por ejemplo, no se le añada visualmente el siguiente elemento.
 
 DATO: Los <span>, (como también les pasa a imágenes, vídeos, pictures, svg, button, inputs) tienen por defecto un `display inline`, por eso se les indica , si es lo que se busca, un `display: inline-block`, que es un comportamiento híbrido, para que se adecue en nuestros <span>
 
@@ -132,24 +133,24 @@ DATO: Los <span>, (como también les pasa a imágenes, vídeos, pictures, svg, b
 
 ### LAYOUT
 
-El layout es la disposición general de mis elementos. Cómo quiero que se coloquen mis cajas, las 20 o 30 que tenga. 
+El layout es la disposición general de mis elementos. Cómo quiero que se coloquen mis cajas, las 20 o 30 que tenga.
 Normalmente por defecto viene el que esté "en línea".
 
 - Propiedades lógicas (diferentes de Custom properties):
-(a) Padding-block es la dirección del bloque(arriba y abajo en nuestro idioma).
-(b)Padding-inline es la dirección de lectura (izq. y derecha en nuestro idioma). Pero en chino y árabe, por ejemplo, estas direcciones pueden ser diferentes. Utilizar estas dos ultimas si estamos aplicándolo para un cliente internacional será lo más responsable, además nos ayudará a entender la forma en la que trabajar con flex o grid, que utilizan 4 ejes.
+  (a) Padding-block es la dirección del bloque(arriba y abajo en nuestro idioma).
+  (b)Padding-inline es la dirección de lectura (izq. y derecha en nuestro idioma). Pero en chino y árabe, por ejemplo, estas direcciones pueden ser diferentes. Utilizar estas dos ultimas si estamos aplicándolo para un cliente internacional será lo más responsable, además nos ayudará a entender la forma en la que trabajar con flex o grid, que utilizan 4 ejes.
 
-#### FLEX BOX
+#### 1. FLEX BOX
 
 Al aplicar `display: flex` directamente mis cajas se convierte en un contenedor flexible. Hay que tener en cuenta que los hijos no heredan ese "flex". Podemos aplicarlo en los hijos individualmente.
 
 Para la dirección horizontal de nuestra web tendremos en cuenta justify.content
 Para la dirección vertical de nuestra web tendremos en cuenta align.items
 
-Es importante entender que si usamos la dirección de row a column, nuestro eje principal se revierte. Es  decir, que al convertir con flex-direction mi eje row -->  a eje column ! , si después le aplicamos un justify-content: end (flex-end) align-items: center, esa "orden" se aplicará a nuestra nuevo eje principal "column", que habrá pasado de horizontal a vertical.
+Es importante entender que si usamos la dirección de row a column, nuestro eje principal se revierte. Es decir, que al convertir con flex-direction mi eje row --> a eje column ! , si después le aplicamos un justify-content: end (flex-end) align-items: center, esa "orden" se aplicará a nuestra nuevo eje principal "column", que habrá pasado de horizontal a vertical.
 
 ```css
-.section.wrapper{
+.section.wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
@@ -157,13 +158,14 @@ Es importante entender que si usamos la dirección de row a column, nuestro eje 
     margin: 1rem;
 }
 ```
+
 - La dirección por defecto siempre será `row` (de izq. a derecha).
 - Para justificar nuestra flex box por norma general se usa el space-between.
 - Por defecto, el alineamiento (vertical, de arriba a abajo) será `align-items; stretch`, pero tenemos las opciones de modificarlo, las tres más comunes son: start, center y end.
 
 ATAJO: `margin` para agrupar los 4 márgenes podemos simplificar con `margin= 1rem`
 pero si son diferentes sería `margin: 1rem 0rem 2rem 2rem---top, right, bottom, left`, respectivamente, (sigue la dirección de las agujas del reloj: arriba, derecha, abajo e izquierda).
-Relacionado con `margin` vemos `margin: 0 auto` que dirá que los margenes de arriba y abajo sean 0 pero que los márgenes laterales se adecúen al espacio sobrante que  tenemos.
+Relacionado con `margin` vemos `margin: 0 auto` que dirá que los margenes de arriba y abajo sean 0 pero que los márgenes laterales se adecúen al espacio sobrante que tenemos.
 
 - Align-content se refiere a múltiples líneas y align-items se refiere a una sola línea (buscar mejor definición).
 
@@ -173,18 +175,18 @@ En el caso de los hijos del display: flex podemos aplicar esa flexibilidad indiv
 
 ```css
 section {
-    flex-grow: 0; 
+    flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
 }
 /* Un atajo para este ejemplo es "flex: 0 1 auto"; pero hay que saber el orden de los valores, que que si los variamos cambiará lo que queremos indicarle a flex */
 
 section:nth-of-type(2) {
-    flex-grow: 2
+    flex-grow: 2;
 }
 
 section:nth-of-type(3) {
-    flex-grow: 1
+    flex-grow: 1;
 }
 ```
 
@@ -194,30 +196,63 @@ section:nth-of-type(3) {
 
 Como podemos ver al final, en el link, éstas dos últimas propiedades se aplicarán a los hijos y, no a los padres, en Flexbox.
 
-
 DATO: Desde el navegador, F12 y en la pestaña Layout, en display flex, podremos jugar con las diferentes opciones, es una muy buena opción para ver los diferentes ejemplos y cómo se comporta flex en nuestra página.
 
-LINK: [www.CSS-tricks.com](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) como guía práctica de CSS flex box.
+LINK: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ como guía práctica de CSS flex box.
 
 Ejemplo Porfolio en apuntes Alejandro 4.CSS/ web/ index.css e index.html.
 
+#### 2. GRID
+
+A diferencia de `flex`, que es unidimensional, `grid` ("casillero") es bidimensional (como un tablero de ajedrez).
+
+Grid principalmente se usará para realizar el contenedor externo.
+En grid a los hijos les pasa exactamente que con flex, no heredan las propiedades.
+
+En este caso, las columnas y las filas son unidireccionales, es decir, van de izq. a derecha y de arriba hacia abajo.
+
+- `Cell` (celdas) podemos agrupar en modo area varias de ellas en modo de rectángulos y cuadrados, nunca en "L"
+
+- `fr Unit` es una unidad de ratio dentro de "mi grid"
+
+En grid hay que añadir siempre qué tipo de grid queremos después de accionarlo con display
+
+Los grid, por defecto, van creciendo automáticamente. Éstas tablas son dinámicas, las va creando en función de las que vas añadiendo en tu html pero no les da el tamaño si no se lo especificas antes.
+
+Grid es unidireccional pero podemos jugar con las posiciones positivas y negativas. A un display grid con template columns y rows 4x4 - EJEMPLOS -
+
+- Le aplicamos grid column: 4 ó grid column:-1
+- En vez de usar grid-column-start(end): span 4 (para rellenar las 4 columnas) puedes indicar grid column: 2/4 (y te rellena entre esas columnas, _CONTANDO SIEMPRE DESDE LA LÍNEA DE LA CUADRÍCULA_), incluso con valores negativos grid column: -1/-3
+- Alternativa muy usada para el relleno; grid-column; 2 (donde empezamos)/ span 3 donde a `span` le indicaremos las celdas que quiero que rellene a partir de la LÍNEA de la celda que le hemos indicado (2).
+- grid-area (grid-row-start; grid-column-start; grid-row-end; grid-column-end) = grid-area (1, 2, 2, -1). Grid-area ya nos da la opción de superponer y crear capas a diferentes elementos (water y zanah. como ejemplo absurdo mental 🙂).
+
+Nuestra cuadrícula puede estar dada en unidades como `100px 3em 40%` ó unidades de `fr: 1fr 5 fr`.
+
+LINK: https://css-tricks.com/css-grid-layout-guide/ como guía práctica de CSS grid
+
 ## DATOS SUELTOS
 
-1. 
+1.
+
 ```html
 <p>Ejemplo de poner html en un .md</p>
 ```
+
 2. `max.width` , para una imagen que quiero que sea fluida y flexible. Normalmente los textos fluyen en nuestra web pero las imágenes se comportan de diferente modo.
 
 3. En html no se ponen unidades en width o height por ejemplo, pero en css si le aclaramos las unidades (px, vh, vw, rem, em).
 
-4. Importante: `display: block` tiene dos características principales; 
-la primera es que cada elemento ocupa todo el ancho disponible (el 100% del contenedor) 
-y  la segunda , precisamente por éste primer motivo, siempre comienza en una nueva línea, posicionándose verticalmente uno debajo del otro.
+4. Importante: `display: block` tiene dos características principales;
+   la primera es que cada elemento ocupa todo el ancho disponible (el 100% del contenedor)
+   y la segunda , precisamente por éste primer motivo, siempre comienza en una nueva línea, posicionándose verticalmente uno debajo del otro.
 
-5. Fons Awesone para encontrar svg.
+5. Fons Awesone para encontrar variedad de svg.
+   Utilizar etiqueta `fill` para modificar el relleno de svg.
+   (Buscar como poder svg con `path d=`)
 
+6. Para realizar nuestra paleta de colores tenemos diferentes herramientas gratuitas:
 
+- Colors (donde puedo exportar el código de css y quedarnos con el que queramos usar, por ejemplo "CSS HEX")
+- Adobe Color
 
-
-
+7. Display block ya se comporta como bloques y por tanto los elementos se situan uno debajo de otro.
