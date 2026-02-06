@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Prueba con Grid</title>
+        <style>
+            section {
+                display: grid;
+                height: 100vh;
+                grid-template-columns: 20% repeat(3, auto); /* (4, 10rem) = cuatro filas de 10rem cada una; por otro lado, auto ocupa todo el espacio posible; también repeat (4, 20%) */
+                /* grid-template-columns: 1fr 1fr; */
+                /* grid-template-columns: 10rem 10rem;  medidas para las dos primeras columnas */
+                grid-template-rows: 20% 30%;
+                /* grid-template-rows: 20rem 20rem ; medidas para las dos primeras filas, las demás que añadas, grid las creará pero sin un tamaño */
+                /* justify-items: center; */
+                /* align-items: center; */
+                place-items: center; /* places lo mismo que indicarle lo mismo a justify-items y align-items, un atajo para aplicar ambas cosas. */
+                /* Alineación del grid entero */
+                justify-content: space-between;
+                align-content: space-between;
+                div {
+                    border: 1px solid black; /*Borde temporal */
+                    padding: 1rem;
+                }
+                div:nth-child(4) {
+                    background-color: blueviolet;
+                    grid-column-start: 1 ;
+                    grid-row: 2;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </section>
+    </body>
+</html>
